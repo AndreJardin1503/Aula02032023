@@ -1,0 +1,7 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/Character4.png","C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/bin/DesktopGL/Character4.xnb","TextureProcessor","Texture2DContent",1668,8817,0,1066447
+"C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/Crate_Blue.png","C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/bin/DesktopGL/Crate_Blue.xnb","TextureProcessor","Texture2DContent",1096,16469,0,0043223
+"C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/EndPoint_Red.png","C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/bin/DesktopGL/EndPoint_Red.xnb","TextureProcessor","Texture2DContent",566,4181,0,0023375
+"C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/File.spritefont","C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/bin/DesktopGL/File.xnb","FontDescriptionProcessor","SpriteFontContent",2065,37919,0,0858309
+"C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/Ground_Grass.png","C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/bin/DesktopGL/Ground_Grass.xnb","TextureProcessor","Texture2DContent",215,16469,0,0040662
+"C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/Wall_Brown.png","C:/Users/jjard/Aula02032023/Experiencia11/Experiencia11/Content/bin/DesktopGL/Wall_Brown.xnb","TextureProcessor","Texture2DContent",1493,16469,0,0027208
