@@ -15,6 +15,8 @@ namespace Experiencia11
         private char[,] level;
         private Texture2D player, dot, box, wall; //Load images Texture
         int tileSize = 64;
+        private Player sokoban;
+
 
 
 
@@ -32,6 +34,10 @@ namespace Experiencia11
             // TODO: Add your initialization logic here
             base.Initialize();
             LoadLevel("level1.txt");
+
+            _graphics.PreferredBackBufferHeight = tileSize * level.GetLength(1); //definição da altura
+            _graphics.PreferredBackBufferWidth = tileSize * level.GetLength(0); //definição da largura
+            _graphics.ApplyChanges(); //aplica a atualização da janela
         }
 
         protected override void LoadContent()
@@ -74,11 +80,17 @@ namespace Experiencia11
             {
                 for (int y = 0; y < level.GetLength(1); y++) //pega a segunda dimensão
                 {
+                    position.X = x * tileSize;
+                    position.Y = y * tileSize;
+
+
+
+
                     switch (level[x, y])
                     {
-                        case 'Y':
-                            _spriteBatch.Draw(player, position, Color.White);
-                            break;
+                        //case 'Y':
+                          //  _spriteBatch.Draw(player, position, Color.White);
+                            //break;
                         case '#':
                             _spriteBatch.Draw(box, position, Color.White);
                             break;
@@ -93,6 +105,12 @@ namespace Experiencia11
                 
             }
 
+            position.X = sokoban.Position.X * tileSize; //posição do Player
+            position.Y = sokoban.Position.Y * tileSize; //posição do Player
+
+            _spriteBatch.Draw(player, position, Color.White); //desenha o Player
+
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -105,14 +123,22 @@ namespace Experiencia11
             nrColunas = linhas[0].Length;
 
             level = new char[nrColunas, nrLinhas];
+
             for (int x = 0; x < nrColunas; x++)
             {
                 for (int y = 0; y < nrLinhas; y++)
                 {
-                    level[x, y] = linhas[y][x];
+                    if (linhas[y][x] == 'Y')
+                    {
+                        sokoban = new Player(x, y);
+                        level[x, y] = ' '; // put a blank instead of the sokoban 'Y'
+                    }
+                    else
+                    {
+                        level[x, y] = linhas[y][x];
+                    }
                 }
             }
-
 
 
 
