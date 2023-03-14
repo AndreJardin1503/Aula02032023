@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,11 +13,11 @@ namespace Experiencia11
         private SpriteFont font;
         private int nrLinhas = 0;
         private int nrColunas = 0;
-        private char[,] level;
+        public char[,] level;
         private Texture2D player, dot, box, wall; //Load images Texture
         int tileSize = 64;
         private Player sokoban;
-
+        public List<Point> boxes;
 
 
 
@@ -60,6 +61,8 @@ namespace Experiencia11
 
             // TODO: Add your update logic here
 
+            sokoban.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -91,9 +94,9 @@ namespace Experiencia11
                         //case 'Y':
                           //  _spriteBatch.Draw(player, position, Color.White);
                             //break;
-                        case '#':
-                            _spriteBatch.Draw(box, position, Color.White);
-                            break;
+                        //case '#':
+                          //  _spriteBatch.Draw(box, position, Color.White);
+                            //break;
                         case '.':
                             _spriteBatch.Draw(dot, position, Color.White);
                             break;
@@ -110,17 +113,38 @@ namespace Experiencia11
 
             _spriteBatch.Draw(player, position, Color.White); //desenha o Player
 
+            foreach (Point b in boxes)
+            {
+                position.X = b.X * tileSize;
+                position.Y = b.Y * tileSize;
+                _spriteBatch.Draw(box, position, Color.White);
+            }
 
             _spriteBatch.End();
 
             base.Draw(gameTime);
         }
-
+        public bool HasBox(int x, int y)
+        {
+            foreach (Point b in boxes)
+            {
+                if (b.X == x && b.Y == y) return true; // se a caixa tiver a mesma posição do Player
+            }
+            return false;
+        }
+        public bool FreeTile(int x, int y)
+        {
+            if (level[x, y] == 'X') return false; // se for uma parede está ocupada
+            if (HasBox(x, y)) return false; // verifica se é uma caixa
+            return true;
+            /* The same as: return level[x,y] != 'X' && !HasBox(x,y); */
+        }
         void LoadLevel(string levelFile)
         {
             string[] linhas = File.ReadAllLines($"Content/{levelFile}"); // "Content/" + level
             nrLinhas = linhas.Length;
             nrColunas = linhas[0].Length;
+            boxes = new List<Point>();
 
             level = new char[nrColunas, nrLinhas];
 
@@ -128,17 +152,27 @@ namespace Experiencia11
             {
                 for (int y = 0; y < nrLinhas; y++)
                 {
-                    if (linhas[y][x] == 'Y')
+                    if (linhas[y][x] == '#')
                     {
-                        sokoban = new Player(x, y);
+                        boxes.Add(new Point(x, y));
+                        level[x, y] = ' '; // put a blank instead of the box '#'
+                    }
+                    else if (linhas[y][x] == 'Y')
+                    {
+                        sokoban = new Player(this, x, y);
                         level[x, y] = ' '; // put a blank instead of the sokoban 'Y'
                     }
                     else
                     {
                         level[x, y] = linhas[y][x];
                     }
+
                 }
             }
+
+
+           
+
 
 
 
