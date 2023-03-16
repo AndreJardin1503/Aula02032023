@@ -30,3 +30,12 @@ C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content
 C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\EndPoint_Red.xnb
 C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Ground_Grass.xnb
 C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Wall_Brown.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character1.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character10.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character2.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character3.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character5.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character6.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character7.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character8.xnb
+C:\Users\jjard\Aula02032023\Experiencia11\Experiencia11\bin\Debug\net6.0\Content\Character9.xnb

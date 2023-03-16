@@ -6,6 +6,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Experiencia11
 {
+    public enum Direction
+    {
+        Up, Down, Left, Right // 0, 1, 2, 3
+    }
+    
+
+
+
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
@@ -14,12 +22,12 @@ namespace Experiencia11
         private int nrLinhas = 0;
         private int nrColunas = 0;
         public char[,] level;
-        private Texture2D player, dot, box, wall; //Load images Texture
+        private Texture2D dot, box, wall; //Load images Texture
+        private Texture2D[] player;
         int tileSize = 64;
         private Player sokoban;
         public List<Point> boxes;
-
-
+        public Direction direction = Direction.Down;
 
         public Game1()
         {
@@ -46,7 +54,11 @@ namespace Experiencia11
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("File"); //Use the name of sprite font file ('File')
 
-            player = Content.Load<Texture2D>("Character4");
+            player = new Texture2D[4];
+            player[(int)Direction.Down] = Content.Load<Texture2D>("Character4");
+            player[(int)Direction.Up] = Content.Load<Texture2D>("Character7");
+            player[(int)Direction.Left] = Content.Load<Texture2D>("Character1");
+            player[(int)Direction.Right] = Content.Load<Texture2D>("Character2");
             dot = Content.Load<Texture2D>("EndPoint_Red");
             box = Content.Load<Texture2D>("Crate_Blue");
             wall = Content.Load<Texture2D>("Wall_Brown");
@@ -56,14 +68,21 @@ namespace Experiencia11
 
         protected override void Update(GameTime gameTime)
         {
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
 
+            if (Victory()) Exit();
             sokoban.Update(gameTime);
 
             base.Update(gameTime);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.R)) Initialize();
+
+
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -111,7 +130,7 @@ namespace Experiencia11
             position.X = sokoban.Position.X * tileSize; //posição do Player
             position.Y = sokoban.Position.Y * tileSize; //posição do Player
 
-            _spriteBatch.Draw(player, position, Color.White); //desenha o Player
+            _spriteBatch.Draw(player[(int)direction], position, Color.White); //desenha o Player
 
             foreach (Point b in boxes)
             {
@@ -169,15 +188,27 @@ namespace Experiencia11
 
                 }
             }
-
-
-           
-
-
-
-
-
+       
         }
+
+
+        public bool Victory()
+        {
+            foreach (Point b in boxes) // pecorrer a lista das caixas
+            {
+                if (level[b.X, b.Y] != '.') return false; // verifica se há caixas sem pontos
+            }
+            return true;
+        }
+
+
+
+
+
+
+
+
+
 
 
     }
